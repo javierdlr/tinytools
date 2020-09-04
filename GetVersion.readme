@@ -1,0 +1,75 @@
+Short:        Shell/CLI cmd to show version string
+Author:       Javier de las Rivas
+Uploader:     Javier de las Rivas (jabierdlr@gmail.com)
+Type:         util/shell
+Version:      1.2
+Architecture: ppc-amigaos
+Requires: AmigaOS4.1 Final Edition Update1
+
+
+Yet another version commandline tool.
+
+
+Shell/CLI arguments:
+FILE/A,[N=NAME/S,V=VER=VERSION/S,D=DATE/S],RES=RESIDENT/S,EXTVER/S,NC=NOCOMMENT
+
+ FILE/A         : filename to get version (mandatory)
+ N=NAME/S       : prints name of version string
+ V=VER=VERSION/S: prints version.revision of version string
+ D=DATE/S       : prints date of version string
+ RES=RESIDENT/S : try to find resident version of FILE
+ EXTVER/S       : try to find $EXTVER: version string
+ NC=NOCOMMENT/S : don't print comment string (if available)
+NOTE1: without any switch it prints full version string.
+NOTE2: using 'N D' combination not supported.
+NOTE3: I added a couple of workarounds for some programs/libs/... that
+have incorrect '$VER: name ver.rev (date) [misc]' string. In case you
+find a faulty one contact me so I can try to workaround (if it's worth).
+
+
+
+Examples:
+#GetVersion libs:asl.library 
+asl.library 53.49 (17.9.2013)
+#GetVersion libs:asl.library NAME VER
+asl.library 53.49
+#GetVersion exec.library RES
+exec 53.89 (28.11.2016)
+#GetVersion ExtraVersion EXTVER
+ExtraVersion 1.0b (26.02.2016)
+This release is a beta version.
+
+
+
+INSTALLATION:
+-Just copy 'GetVersion' where you want on your hard disk.
+
+
+
+Compiling sources:
+Latest SDK & "execute GetVersion.c"
+
+
+
+Thanks to (in no special order):
+mritter and everyone at os4coding!
+
+
+
+HISTORY:
+V1.0 (2017-09-01) Javier de las Rivas
+ - First released version.
+V1.1 (2017-09-17) Javier de las Rivas
+ - Reworked resident version search (RES=RESIDENT switch).
+ - Adding "brute force" $EXTVER version search.
+ - Added mode "GetVersion <file> V D", prints VERSION and DATE.
+ - Added no comment switch (NC=NOCOMMENT).
+V1.2 (2017-12-05) Javier de las Rivas
+ - Try "brute force" if everything else failed (ex. in .catalog).
+
+
+
+ToDo (apart of fixing bugs):
+-Enhance resident version search.
+-Localize date.
+-Add small window/GUI ala VersionWB ¿:-/
